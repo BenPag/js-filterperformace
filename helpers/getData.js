@@ -3,7 +3,7 @@ let data = [];
 async function loadData() {
     if (data.length === 0) {
         const response = await fetch('data/data.json');
-        data = response.json();
+        data = await response.json();
     }
     return data;
 }
