@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <title>Filter-Performance</title>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+    <script
+            crossorigin="anonymous"
+            integrity="sha512-C2RveGuPIWqkaLAluvoxyiaN1XYNe5ss11urhZWZYBUA9Ydgj+hfGKPcxCzTwut1/fmjEZR7Ac35f2aycT8Ogw=="
+            src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js">
+    </script>
+    <script src="libs/jszip.min.js"></script>
+    <script src="helpers/getData.js"></script>
+    <script src="helpers/plotter.js"></script>
+    <script src="useNatives.js"></script>
+    <script src="fuseTest.js"></script>
+    <script src="useLunr.js"></script>
+    <link
+            crossorigin="anonymous"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            rel="stylesheet"
+    >
+</head>
+<body class="container-fluid">
+<button class="btn btn-success my-3" onclick="start()">Start Performance Test</button>
+<button class="btn btn-primary m-3" id="import-btn" onclick="document.getElementById('file').click()">Import
+    TestResults
+</button>
+<button class="btn btn-info m-3" id="redraw-btn" onclick="filterPlot()">ReDraw Plots</button>
+<button class="btn btn-secondary m-3" id="save-btn" onclick="saveData()">Save TestResults</button>
+<input class="d-none" id="file" name="file" type="file"/>
+<table class="table table-striped table-hover table-responsive" id="result-table">
+    <thead>
+    <tr>
+        <th>&nbsp;</th>
+        <th colspan="2">Array.filter()</th>
+        <th colspan="2">Lunr.js</th>
+        <th colspan="2">Fuse.js</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th class="border">Location</th>
+        <td class="text-right" id="filter-location">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-1" name="filter[]" type="checkbox" value="filterLocation">
+        </td>
+        <td class="text-right" id="lunr-location">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-5" name="filter[]" type="checkbox" value="lunrJsLocation">
+        </td>
+        <td class="text-right" id="fuse-location">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-4" name="filter[]" type="checkbox" value="fuseJsLocation">
+        </td>
+    </tr>
+    <tr>
+        <th class="border">FullText</th>
+        <td class="text-right" id="filter-fullText">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-2" name="filter[]" type="checkbox" value="filterFullText">
+        </td>
+        <td class="text-right" id="lunr-fullText">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-7" name="filter[]" type="checkbox" value="lunrJsFullText">
+        </td>
+        <td class="text-right" id="fuse-fullText">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-6" name="filter[]" type="checkbox" value="fuseJsFullText">
+        </td>
+    </tr>
+    <tr>
+        <th class="border">TimeRange</th>
+        <td class="text-right" id="filter-timeRange">&nbsp;</td>
+        <td style="vertical-align: middle">
+            <input checked id="plot-filter-3" name="filter[]" type="checkbox" value="filterTimeRange">
+        </td>
+        <td class="text-right" id="lunr-timeRange">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="text-right" id="fuse-timeRange">&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <th class="border-right">Indexing</th>
+        <td class="text-right" id="filter-index">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="text-right" id="lunr-index">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="text-right" id="fuse-index">&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    </tbody>
+</table>
+<div id="plot"></div>
+<script src="index.js"></script>
+</body>
+</html>
